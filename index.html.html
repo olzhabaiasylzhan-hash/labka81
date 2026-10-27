@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>№8 Зертханалық жұмыс — Тұрақты магниттің қасиеттері және магнит өрісінің бейнесі</title>
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#667085;--blue:#2563eb;--blue2:#dbeafe;--green:#16a34a;--orange:#ea580c;--red:#dc2626;--border:#dbe2ea;--panel:#f8fafc}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--text);line-height:1.55}
+.container{max-width:1150px;margin:0 auto;padding:24px}
+.hero{background:linear-gradient(135deg,#173b8f,#2563eb);color:#fff;border-radius:24px;padding:32px;box-shadow:0 12px 30px rgba(23,59,143,.15)}
+.hero h1{margin:0 0 10px;font-size:32px}.hero p{margin:6px 0;opacity:.94}
+.hero .obj{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:14px;padding:10px 14px;font-size:14px;margin-top:12px}
+.badge{display:inline-block;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.33);padding:7px 12px;border-radius:999px;margin-bottom:14px;font-size:14px;font-weight:bold}
+#scw{text-align:right;margin:10px 4px 0;font-weight:bold;color:var(--orange);font-size:17px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:18px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:0 5px 18px rgba(24,34,48,.04)}
+.card h2{margin-top:0;font-size:21px}.card h3{font-size:17px;margin-bottom:8px}
+.full{grid-column:1/-1}
+.callout{padding:15px 17px;border-radius:14px;background:var(--blue2);border-left:5px solid var(--blue)}
+.hyp{background:#eefcf3;border-left:5px solid var(--green)}
+.warning{background:#fff8eb;border-left:5px solid var(--orange)}
+ul,ol{padding-left:22px}
+.variables{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.var{padding:15px;border-radius:14px;background:var(--panel);border:1px solid var(--border)}
+.var b{display:block;margin-bottom:5px}
+.blue{border-top:4px solid var(--blue)}.green{border-top:4px solid var(--green)}.orange{border-top:4px solid var(--orange)}
+select,input[type=text],input[type=password],textarea{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;font-size:15px}
+input[type=radio]{width:auto}
+button.action-btn{border:0;border-radius:10px;padding:11px 17px;background:var(--blue);color:#fff;font-weight:bold;cursor:pointer;font-size:14px}
+button.action-btn.secondary{background:#64748b}
+button.action-btn.on{background:#0f766e}
+button.action-btn:hover{opacity:.9}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0;align-items:center}
+.small{font-size:13px;color:var(--muted)}
+.check{padding:14px;border-radius:14px;background:var(--panel);border:1px solid var(--border)}
+.fb{font-size:14px;margin:4px 0}.ok{color:var(--green);font-weight:bold}.no{color:var(--red);font-weight:bold}
+footer{text-align:center;color:var(--muted);padding:25px}
+canvas.ch{display:block;width:100%;height:auto;border:1px solid var(--border);border-radius:12px;background:#fff}
+canvas.wk{touch-action:none}
+.mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.mc{border:1px solid var(--border);border-radius:14px;padding:10px;background:var(--panel);text-align:center}
+.mc .stage{display:flex;align-items:center;justify-content:space-between;height:52px;font-size:30px;padding:0 6px;overflow:hidden}
+.mc .it{transition:transform .5s}
+.mc.near .it.mag{transform:translateX(-46px)}
+.mc select{margin:6px 0;padding:6px;font-size:13px}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tray{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0;padding:10px;background:#e2e8f0;border-radius:14px}
+.tr{width:136px;border:2px dashed #94a3b8;border-radius:12px;background:#fff;text-align:center;font-size:12px;cursor:grab;padding:6px;user-select:none;touch-action:none}
+.tr:hover{border-color:var(--blue);background:var(--blue2)}
+.tr svg{display:block;margin:0 auto 2px;pointer-events:none}
+.gs{display:flex;gap:8px;align-items:flex-start;margin:4px 0;font-size:14px}
+.gs.d{color:var(--green);font-weight:bold}
+.qrow{margin:8px 0}.qrow label{display:block;font-weight:bold;font-size:14px;margin-bottom:4px}
+#toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+#toolbar button{flex:1;min-width:170px;padding:12px;border-radius:12px;border:0;background:var(--blue);color:#fff;font-weight:bold;font-size:15px;cursor:pointer}
+#toolbar button.pdf{background:#dc2626}
+#lang{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+#lang button{flex:1;min-width:130px;padding:12px;border-radius:12px;border:2px solid var(--blue);background:#fff;color:var(--blue);font-weight:bold;font-size:15px;cursor:pointer}
+#lang button.on{background:var(--blue);color:#fff}
+.sen-only{display:none}
+body.sen{font-size:19px;background:#fff;color:#000}body.sen .sen-only{display:block}body.sen .card{border:3px solid #000}
+body.sen .action-btn{font-size:18px;padding:14px 20px}body.sen input,body.sen select,body.sen textarea{font-size:19px}
+body.sen .small{font-size:17px;color:#222}body.sen h2{font-size:26px}
+@media(max-width:900px){.pgrid{grid-template-columns:1fr}.mgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.variables{grid-template-columns:1fr 1fr}.hero h1{font-size:25px}.container{padding:14px}}
+@media(max-width:480px){.variables{grid-template-columns:1fr}}
+@page{size:A4;margin:12mm}
+@media print{
+*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{background:#fff}.container{max-width:none;padding:0}
+#toolbar,#lang,.actions,#apik,details,#disw,.tray,select[data-ch],button[data-a],.sen-only{display:none!important}
+.card,.hero{box-shadow:none;break-inside:avoid;page-break-inside:avoid}
+.grid{gap:10px}.mgrid{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div id="toolbar"><button type="button" id="printBtn">🖨 Басып шығару</button><button type="button" class="pdf" id="pdfBtn">📄 PDF-ке айналдыру</button></div>
+<nav id="lang"><button data-l="kk">Қазақша</button><button data-l="ru">Русский</button><button data-l="en">English</button><button data-l="sen">♿ ЕҚБ · Жеңілдетілген</button></nav>
+
+<header class="hero" data-i="hero"><div class="badge">№8 ЗЕРТХАНАЛЫҚ ЖҰМЫС</div><h1>Тұрақты магниттiң қасиеттерiн оқып-үйрену және магнит өрiсiнiң бейнесiн алу</h1><p>Интерактивті зерттеу моделі: магниттің қасиеттері, темір ұнтағымен және қарындашпен күш сызықтарын бейнелеу.</p><p class="obj"><b>8.4.3.1</b> – магниттердің негізгі қасиеттеріне сипаттама беру және магнит өрісін күш сызықтары арқылы бейнелеу<br><b>8.1.3.3</b> – физика кабинетінде қауіпсіздік ережелерін білу және сақтау</p></header>
+<div id="scw"><span id="sc"></span></div>
+
+<div class="grid">
+<section class="card full" data-i="sq"><h2>1. Зерттеу сұрағы</h2><p><b>Тұрақты магниттің әртүрлі полюстері (солтүстік және оңтүстік) өзара қалай әрекеттеседі және магнит өрісінің күш сызықтарының бағыты магниттің сыртында қалай орналасады?</b></p></section>
+
+<section class="card" data-i="sa"><h2>2. Зерттеудің мақсаты мен міндеттері</h2><p><b>Мақсаты:</b> Тұрақты магниттердің негізгі қасиеттерін зерттеу және магнит өрісінің күш сызықтарын сипаттау.</p><p><b>Міндеттері:</b></p><ol><li>Тұрақты магниттердің физикалық теориясы мен қасиеттерін қарастыру.</li><li>Темір ұнтақтары арқылы магнит өрісінің бейнесін алу және күш сызықтарын өз бетінше салу.</li><li>Алынған бақылауларды талдап, қорытынды жасау.</li></ol></section>
+
+<section class="card" data-i="sh"><h2>3. Гипотеза</h2><div class="callout hyp"><p><b>Егер</b> тұрақты магниттен қашықтықты арттырсақ немесе магниттің қуатын азайтсақ, <b>онда</b> магнит өрісінің индукциясы кемиді, <b>себебі</b> магниттен алыстаған сайын күш сызықтары сирей түседі.</p></div></section>
+
+<section class="card full" data-i="sv"><h2>4. Тәуелсіз, тәуелді және тұрақты сақталатын шамалар</h2><div class="variables"><div class="var blue"><b>Тәуелсіз шама (өзгертетін)</b>Магнитке дейінгі қашықтық r және магниттің массасы.</div><div class="var green"><b>Тәуелді шама (өлшенетін)</b>Магнит өрісінің индукциясы B.</div><div class="var orange"><b>Тұрақты сақталатын шамалар</b>Сынақ ортасының қасиеттері (ауа), температура.</div></div></section>
+
+<section class="card" data-i="st"><h2>5. Құралдар</h2><ul><li>тұрақты магнит;</li><li>темір ұнтақтары салынған ыдыс;</li><li>үстел беті (қағаз парағы);</li><li>қарындаш және өшіргіш.</li></ul></section>
+
+<section class="card" data-i="sr"><h2>Магниттің негізгі қасиеттері</h2><div class="callout"><ul style="margin:0"><li>Магниттің екі полюсі бар: <b>N</b> (солтүстік) және <b>S</b> (оңтүстік).</li><li>Бір аттас полюстер <b>тебіледі</b>, әр аттас полюстер <b>тартылады</b>.</li><li>Магнитті бөлсек, әр бөлігінде тағы N және S болады.</li><li>Күш сызықтары магниттің сыртында <b>N-нен S-ке</b> қарай бағытталған тұйық сызықтар; олар қиылыспайды.</li><li>Сызықтар тығыз жерде өріс <b>күшті</b>. Компас тілінің N ұшы өріс бағытын көрсетеді.</li></ul></div></section>
+
+<section class="card full" data-i="so"><h2>6. Өлшеу реті</h2><div class="grid" style="margin-top:0"><div><h3>Тәжірибе 1. Магнит өрісінің бейнесін темір ұнтақтары арқылы алу</h3><ol><li>Экранда бос зертханалық үстел және құралдар болады: тұрақты магнит, темір ұнтақтары салынған ыдыс.</li><li>Құралдарды өзіңіз үстелге сүйреп апарыңыз. Алдымен тұрақты магнитті үстелге қойыңыз.</li><li>Содан кейін темір ұнтақтарын магниттің айналасына өзіңіз себіңіз.</li><li>Ұнтақтардың қалай орналасатынын бақылап, магнит өрісінің бейнесін зерттеңіз: қай аймақта ұнтақтар көбірек шоғырланады және қандай бағытта орналасады.</li></ol></div><div><h3>Тәжірибе 2. Магнит өрісінің күш сызықтарын өз бетінше салу</h3><ol><li>Экранда тұрақты магнит, бос жұмыс алаңы және қарындаш болады (темір ұнтақтары қолданылмайды).</li><li>Магнитті жұмыс алаңына орналастырып, қарындашпен күш сызықтарын өзіңіз салыңыз: бағытын, пішінін және полюстер маңындағы орналасуын бейнелеңіз.</li><li>Сызба дайын болғанда «Тексеру» батырмасын басыңыз: жүйе сызбаңызды дұрыс үлгімен салыстырып, қателерін көрсетеді.</li><li>Қажет болса сызбаны түзетіп, қайта тексеріңіз. Дұрыс үлгі тек тексеруден кейін көрсетіледі.</li></ol></div></div></section>
+
+<section class="card full" data-i="ss"><h2>7. Қауіпсіздік ережелері</h2><div class="callout warning"><ul style="margin:0"><li>Күшті магниттерді бір-біріне тым жақындатып, саусақты қысып қалудан сақ болыңыз.</li><li>Электрондық құрылғылар мен магниттерді қатар қоймаңыз (мәліметтердің бұзылуын болдырмау үшін).</li><li>Темір ұнтақтарымен жұмыс істегенде қолғап киіңіз, ұнтақты шашыратпаңыз және көзге тигізбеңіз.</li><li>Магнитті лақтырмаңыз, соқпаңыз, қыздырмаңыз.</li><li>Жұмыстан кейін ұнтақты жинап, қолды жуыңыз; қауіпті жағдайда мұғалімге хабарлаңыз.</li></ul></div></section>
+
+<section class="card full" id="step1"><h2 data-i="s1h">Қадам 1. Қауіпсіздікті таңда (8.1.3.3)</h2>
+<p class="small" data-i="s1p">Әр тұжырымның қауіпсіз немесе қауіпті екенін белгілеңіз. Бәрі дұрыс болса — 🏆 ұпай аласыз!</p>
+<div class="sen-only callout hyp">🧲 Әр сөйлемді оқы → ✅ немесе ⛔ таңда → «Тексеру» бас. Қателессең — қорықпа! 😊</div>
+<div id="sfbox"></div></section>
+
+<section class="card full" id="step2"><h2 data-i="s2h">Қадам 2. Магниттің қасиеттері (8.4.3.1)</h2>
+<p class="small" data-i="s2p">Әр затқа магнитті жақындатып көріңіз, содан кейін тартыла ма, жоқ па — таңдап, тексеріңіз.</p>
+<h3 data-i="m3">🔍 Қай зат магнитке тартылады?</h3><div id="matbox"></div>
+<h3 data-i="p3" style="margin-top:20px">🧲 Полюстер: тартыла ма, тебіле ме?</h3><p class="small" data-i="p3p">Бір-біріне қараған полюстерге қарап, магниттердің әрекетін болжаңыз.</p><div id="polbox"></div></section>
+
+<section class="card full" id="step3"><h2 data-i="s3h">Қадам 3. Тәжірибе 1. Магнит өрісінің бейнесін темір ұнтақтары арқылы алу</h2>
+<p class="small" data-i="s3p">Құралдарды төмендегі сөреден үстелге сүйреңіз (телефонда — басыңыз). Алдымен магнитті қойыңыз, сосын ұнтақ салынған ыдысты алып, магниттің айналасында жылжыту арқылы ұнтақты себіңіз.</p>
+<div id="e1g"></div><div class="tray" id="tray1"></div>
+<canvas class="ch wk" id="e1c" width="820" height="460"></canvas>
+<div class="actions" id="e1b"></div>
+<h3 id="e1qh"></h3><div id="e1q"></div>
+<div class="actions"><button class="action-btn" data-a="e1chk" id="e1ck"></button></div><div class="fb" id="e1fb"></div></section>
+
+<section class="card full" id="step4"><h2 data-i="s4h">Қадам 4. Тәжірибе 2. Магнит өрісінің күш сызықтарын өз бетінше салу</h2>
+<p class="small" data-i="s4p">Магнитті және қарындашты жұмыс алаңына сүйреңіз. Қарындашты басып тұрып күш сызығын салыңыз: көрсеткі сіз сызған бағытты көрсетеді. Дайын болғанда «Тексеру» батырмасын басыңыз.</p>
+<div id="e2g"></div><div class="tray" id="tray2"></div>
+<canvas class="ch wk" id="e2c" width="820" height="460"></canvas>
+<div class="actions" id="e2b"></div>
+<div class="actions"><button class="action-btn" data-a="e2chk" id="e2ck"></button></div><div class="fb" id="e2fb" style="line-height:1.7"></div></section>
+
+<section class="card full"><h2 data-i="th">Қадам 5. Тест</h2><div class="actions"><button class="action-btn" id="shuf"></button><button class="action-btn secondary" id="fin"></button></div><div id="tq" style="margin-top:12px"></div><h3 id="score"></h3></section>
+
+<section class="card full" id="concl"><h2 data-i="ch">Зертханалық жұмыстың қорытындысы</h2>
+<p data-i="cp">Бақылау нәтижелеріңізді теориямен салыстырып, магниттің қасиеттерін және күш сызықтарының бейнесін сипаттаңыз.</p>
+<p><b data-i="cl">Оқушының қорытындысы:</b></p>
+<textarea id="conc" rows="6" data-ph="cph" placeholder="Өз қорытындыңызды осы жерге жазыңыз..."></textarea>
+<div class="actions"><button class="action-btn" id="aib" data-i="aib">🤖 ЖИ-мен тексеру</button><button class="action-btn secondary" id="dlb" data-i="dlb">📥 Есепті жүктеу</button></div>
+<details style="margin-top:10px"><summary class="small" data-i="apis">⚙ Нақты ЖИ (Claude) қосу — мұғалім үшін, міндетті емес</summary><p class="small" data-i="apin">Кілтсіз — құрылымдық автотексеру жұмыс істейді. API кілтін енгізсеңіз, қорытынды Claude арқылы тексеріледі (кілт тек осы бетте, браузерде қалады).</p><input type="password" id="apik" placeholder="sk-ant-..." autocomplete="off"></details>
+<div class="check" id="aiOut" style="display:none;margin-top:12px"></div>
+<div id="disw" style="display:none;margin-top:12px"><label><b data-i="dl">Мен ЖИ жауабымен келіспеймін, себебі:</b></label><textarea id="dis" rows="4" data-ph="dph" placeholder="Қай жерімен келіспейсіз? Дәлеліңізді жазыңыз..."></textarea></div></section>
+</div>
+<footer data-i="foot">№8 зертханалық жұмыс • Интерактивті зерттеу моделі</footer>
+</div>
+
+<script>
+(()=>{
+const $=i=>document.getElementById(i),RI=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),sh=a=>{a=[...a];for(let i=a.length;i>1;i--){const j=Math.floor(Math.random()*i);[a[i-1],a[j]]=[a[j],a[i-1]]}return a};
+const W=820,H=460,LM=150,TH=44,TOT=6,SHT={x:40,y:30,w:740,h:400},PI=Math.PI;
+const S={lang:'kk',sc:new Set(),sf:[],pl:[],mt:[],T:[]};
+const X=(k,r,e,s)=>({kk:k,ru:r,en:e,sen:s==null?k:s})[S.lang],XA=a=>X(a[0],a[1],a[2]);
+const esc=s=>{const d=document.createElement('div');d.textContent=s;return d.innerHTML};
+function updSc(){$('sc').textContent='🏆 '+S.sc.size+' / '+TOT+' '+'⭐'.repeat(S.sc.size)}
+function award(k){if(!S.sc.has(k)){S.sc.add(k);updSc()}}
+const ACT={},INP={};
+
+/* ---------- Қадам 1: қауіпсіздік ---------- */
+const SF=[
+[1,'Магниттерді шашпай, қорапта сақтау.','Хранить магниты в коробке, не разбрасывать.','Store magnets in their box, do not scatter them.'],
+[1,'Темір ұнтағымен жұмыс істегенде қолғап кию.','Работая с железными опилками, надевать перчатки.','Wear gloves when working with iron filings.'],
+[1,'Күшті магниттерді алшақ ұстап, ақырын жақындату.','Сильные магниты сводить медленно, держа пальцы подальше.','Bring strong magnets together slowly, keeping fingers clear.'],
+[1,'Жұмыстан кейін ұнтақты жинап, қолды жуу.','После работы убрать опилки и вымыть руки.','Clean up the filings and wash your hands afterwards.'],
+[1,'Қауіпті жағдай болса, мұғалімге дереу хабарлау.','При опасной ситуации сразу сообщить учителю.','Tell the teacher immediately in a dangerous situation.'],
+[1,'Магнитті телефоннан, банк картасынан және ноутбуктен алыс ұстау.','Держать магнит подальше от телефона, банковской карты и ноутбука.','Keep magnets away from phones, bank cards and laptops.'],
+[0,'Күшті магниттерді тез жақындатып, саусақты арасына қою.','Быстро сводить сильные магниты, держа пальцы между ними.','Slam strong magnets together with fingers in between.'],
+[0,'Магнитті телефонның немесе банк картасының үстіне қою.','Положить магнит на телефон или банковскую карту.','Put a magnet on top of a phone or bank card.'],
+[0,'Темір ұнтағын үрлеу немесе көзді қолмен ысқылау.','Дуть на железные опилки или тереть глаза рукой.','Blow on the iron filings or rub your eyes.'],
+[0,'Магнитті лақтыру немесе балғамен ұру.','Бросать магнит или бить по нему молотком.','Throw a magnet or hit it with a hammer.'],
+[0,'Магнитті отқа салып қыздыру.','Нагревать магнит на огне.','Heat a magnet in a flame.'],
+[0,'Кардиостимуляторы бар адамның жанына күшті магнитті апару.','Подносить сильный магнит к человеку с кардиостимулятором.','Bring a strong magnet close to a person with a pacemaker.']];
+function safeR(){S.sf=sh(SF).slice(0,6);
+$('sfbox').innerHTML=S.sf.map((q,i)=>`<div class="check" style="margin-bottom:8px"><b>${X(q[1],q[2],q[3])}</b><div style="margin-top:6px"><label style="margin-right:16px"><input type="radio" name="sf${i}" value="1"> ✅ ${X('Қауіпсіз','Безопасно','Safe')}</label><label><input type="radio" name="sf${i}" value="0"> ⛔ ${X('Қауіпті','Опасно','Dangerous')}</label> <span class="fb" id="sff${i}"></span></div></div>`).join('')+`<div class="actions"><button class="action-btn" data-a="sfc">${X('Тексеру','Проверить','Check')}</button><button class="action-btn secondary" data-a="sfn">🔀 ${X('Жаңа тұжырымдар','Новые утверждения','New statements')}</button><b id="sfs"></b></div>`}
+ACT.sfn=safeR;
+ACT.sfc=()=>{let ok=0;S.sf.forEach((q,i)=>{const c=document.querySelector(`input[name=sf${i}]:checked`),o=$('sff'+i);if(!c){o.className='fb no';o.textContent=' '+X('Таңдаңыз','Выберите','Choose');return}const g=(+c.value)==q[0];ok+=g;o.className='fb '+(g?'ok':'no');o.textContent=g?' ✓ '+X('Дұрыс','Верно','Correct','Жарайсың! 🎉'):' ✗ '+X('Қате — қайта ойланыңыз','Неверно — подумайте ещё','Wrong — think again','Қайта көр 💪')});$('sfs').textContent=ok+' / '+S.sf.length;if(ok==S.sf.length)award('safe')};
+
+/* ---------- Қадам 2: заттар және полюстер ---------- */
+const MT=[['🔩',1,'Темір шеге','Железный гвоздь','Iron nail'],['📎',1,'Қағаз қыстырғыш (болат)','Скрепка (сталь)','Paper clip (steel)'],['✂️',1,'Болат қайшы','Стальные ножницы','Steel scissors'],['🪙',0,'Мыс тиын','Медная монета','Copper coin'],['✏️',0,'Ағаш қарындаш','Деревянный карандаш','Wooden pencil'],['🥛',0,'Шыны стақан','Стеклянный стакан','Glass cup'],['🥤',0,'Алюминий банка','Алюминиевая банка','Aluminium can'],['📄',0,'Қағаз парағы','Лист бумаги','Sheet of paper']];
+S.mt=sh(MT);
+function matR(){const sel=S.mt.map((_,i)=>$('ms'+i)?$('ms'+i).value:'');
+$('matbox').innerHTML='<div class="mgrid">'+S.mt.map((m,i)=>`<div class="mc" id="mc${i}"><div class="stage"><span>🧲</span><span class="it ${m[1]?'mag':''}">${m[0]}</span></div><div class="small">${X(m[2],m[3],m[4])}</div><button class="action-btn secondary" data-a="mnear" data-v="${i}">🧲 ${X('Жақындату','Поднести','Bring close')}</button><select id="ms${i}"><option value="">?</option><option value="1">${X('Тартылады','Притягивается','Attracted')}</option><option value="0">${X('Тартылмайды','Не притягивается','Not attracted')}</option></select><div class="fb" id="mf${i}"></div></div>`).join('')+`</div><div class="actions"><button class="action-btn" data-a="mchk">${X('Тексеру','Проверить','Check')}</button></div><div class="fb" id="mfs"></div>`;
+sel.forEach((v,i)=>{if(v&&$('ms'+i))$('ms'+i).value=v})}
+ACT.mnear=v=>$('mc'+v).classList.toggle('near');
+ACT.mchk=()=>{let ok=0;S.mt.forEach((m,i)=>{const v=$('ms'+i).value,o=$('mf'+i);if(v===''){o.className='fb no';o.textContent=X('Таңдаңыз','Выберите','Choose');return}const g=(+v)==m[1];ok+=g;o.className='fb '+(g?'ok':'no');o.textContent=g?'✓':'✗'});
+$('mfs').className='fb '+(ok==S.mt.length?'ok':'no');$('mfs').textContent=ok+' / '+S.mt.length+' '+(ok==S.mt.length?X('— Магнитке тек темір, никель, кобальт және олардың құймалары (болат) тартылады.','— К магниту притягиваются железо, никель, кобальт и их сплавы (сталь).','— Magnets attract iron, nickel, cobalt and their alloys (steel).','— Тек темір мен болат тартылады! 🎉'):X('— Қателерді түзетіп көріңіз.','— Исправьте ошибки.','— Fix the mistakes.','— Қайта көр 💪'));if(ok==S.mt.length)award('mat')};
+const pc=p=>p?'#2563eb':'#dc2626',pn=p=>p?'S':'N';
+const mgs=(x,w,lp,rp)=>`<rect x="${x}" y="12" width="${w/2}" height="36" fill="${pc(lp)}"/><rect x="${x+w/2}" y="12" width="${w/2}" height="36" fill="${pc(rp)}"/><rect x="${x}" y="12" width="${w}" height="36" fill="none" stroke="#111" stroke-width="2"/><text x="${x+w/4}" y="37" text-anchor="middle" fill="#fff" font-weight="bold" font-size="18">${pn(lp)}</text><text x="${x+3*w/4}" y="37" text-anchor="middle" fill="#fff" font-weight="bold" font-size="18">${pn(rp)}</text>`;
+function polR(){if(!S.pl.length)S.pl=[0,1,2].map(()=>({a:RI(0,1),b:RI(0,1),v:''}));
+S.pl.forEach((p,i)=>{if($('ps'+i))p.v=$('ps'+i).value});
+$('polbox').innerHTML='<div class="pgrid">'+S.pl.map((p,i)=>`<div class="check"><svg viewBox="0 0 300 60" style="width:100%">${mgs(10,120,1-p.a,p.a)}${mgs(170,120,p.b,1-p.b)}<text x="150" y="37" text-anchor="middle" font-size="22">↔</text></svg><select id="ps${i}"><option value="">?</option><option value="1" ${p.v==='1'?'selected':''}>${X('Тартылады','Притягиваются','Attract')}</option><option value="0" ${p.v==='0'?'selected':''}>${X('Тебіледі','Отталкиваются','Repel')}</option></select><div class="fb" id="pf${i}"></div></div>`).join('')+`</div><div class="actions"><button class="action-btn" data-a="pchk">${X('Тексеру','Проверить','Check')}</button><button class="action-btn secondary" data-a="pnew">🔀 ${X('Жаңа жұптар','Новые пары','New pairs')}</button></div><div class="fb" id="pfs"></div>`}
+ACT.pnew=()=>{S.pl=[];polR()};
+ACT.pchk=()=>{let ok=0;S.pl.forEach((p,i)=>{const v=$('ps'+i).value,o=$('pf'+i);if(v===''){o.className='fb no';o.textContent=X('Таңдаңыз','Выберите','Choose');return}const g=(+v)==(p.a!=p.b?1:0);ok+=g;o.className='fb '+(g?'ok':'no');o.textContent=g?'✓ '+(p.a!=p.b?X('Әр аттас — тартылады','Разноимённые — притягиваются','Unlike — attract'):X('Бір аттас — тебіледі','Одноимённые — отталкиваются','Like — repel')):'✗ '+X('Қате','Неверно','Wrong')});
+$('pfs').className='fb '+(ok==3?'ok':'no');$('pfs').textContent=ok+' / 3';if(ok==3)award('pole')};
+
+/* ---------- Ортақ: өріс, үстел, магнит, ыдыс ---------- */
+const poles=m=>{const c=Math.cos(m.a),s=Math.sin(m.a);return[{x:m.x+c*LM/2,y:m.y-s*LM/2,q:1},{x:m.x-c*LM/2,y:m.y+s*LM/2,q:-1}]};
+function Bf(P,x,y){let bx=0,by=0;for(const p of P){const dx=x-p.x,dy=y-p.y,d2=dx*dx+dy*dy+36,k=p.q/(d2*Math.sqrt(d2));bx+=dx*k;by+=dy*k}return[bx,by]}
+const Bm=(P,x,y)=>{const b=Bf(P,x,y);return Math.hypot(b[0],b[1])};
+function inMag(m,x,y,pad=3){const dx=x-m.x,dy=y-m.y,u=dx*Math.cos(m.a)-dy*Math.sin(m.a),v=dx*Math.sin(m.a)+dy*Math.cos(m.a);return Math.abs(u)<LM/2+pad&&Math.abs(v)<TH/2+pad}
+function trace(P,x,y,sg){const pts=[[x,y]];for(let i=0;i<1600;i++){const b=Bf(P,x,y),n=Math.hypot(b[0],b[1]);if(n<1e-9)break;const st=4*sg,mx=x+b[0]/n*st/2,my=y+b[1]/n*st/2,c=Bf(P,mx,my),m=Math.hypot(c[0],c[1])||1;x+=c[0]/m*st;y+=c[1]/m*st;pts.push([x,y]);if(x<-5||y<-5||x>W+5||y>H+5)break;if(P.some(p=>(sg>0?p.q<0:p.q>0)&&Math.hypot(x-p.x,y-p.y)<8))break}return pts}
+const pt=(e,c)=>{const r=c.getBoundingClientRect();return[(e.clientX-r.left)*W/r.width,(e.clientY-r.top)*H/r.height]};
+const BG=(()=>{const c=document.createElement('canvas');c.width=W;c.height=H;const g=c.getContext('2d');let gr=g.createLinearGradient(0,0,0,H);gr.addColorStop(0,'#b88650');gr.addColorStop(.5,'#a8743f');gr.addColorStop(1,'#8f5d30');g.fillStyle=gr;g.fillRect(0,0,W,H);
+for(let i=0;i<80;i++){const y=Math.random()*H;g.strokeStyle='rgba(80,45,20,'+(.08+Math.random()*.14)+')';g.lineWidth=.5+Math.random()*1.6;g.beginPath();g.moveTo(0,y);for(let x=0;x<=W;x+=40)g.lineTo(x,y+Math.sin(x/90+i)*3);g.stroke()}
+g.shadowColor='rgba(0,0,0,.4)';g.shadowBlur=18;g.shadowOffsetY=6;g.fillStyle='#fffefa';g.fillRect(SHT.x,SHT.y,SHT.w,SHT.h);g.shadowColor='transparent';
+g.strokeStyle='rgba(148,163,184,.12)';g.lineWidth=1;for(let x=SHT.x+37;x<SHT.x+SHT.w;x+=37){g.beginPath();g.moveTo(x,SHT.y);g.lineTo(x,SHT.y+SHT.h);g.stroke()}for(let y=SHT.y+37;y<SHT.y+SHT.h;y+=37){g.beginPath();g.moveTo(SHT.x,y);g.lineTo(SHT.x+SHT.w,y);g.stroke()}
+return c})();
+function dMag(g,m){g.save();g.translate(m.x,m.y);g.rotate(-m.a);g.shadowColor='rgba(0,0,0,.45)';g.shadowBlur=10;g.shadowOffsetY=5;
+let gr=g.createLinearGradient(0,-TH/2,0,TH/2);gr.addColorStop(0,'#93c5fd');gr.addColorStop(.3,'#2563eb');gr.addColorStop(1,'#1e3a8a');g.fillStyle=gr;g.fillRect(-LM/2,-TH/2,LM/2,TH);
+g.shadowColor='transparent';gr=g.createLinearGradient(0,-TH/2,0,TH/2);gr.addColorStop(0,'#fca5a5');gr.addColorStop(.3,'#dc2626');gr.addColorStop(1,'#7f1d1d');g.fillStyle=gr;g.fillRect(0,-TH/2,LM/2,TH);
+g.fillStyle='rgba(255,255,255,.3)';g.fillRect(-LM/2+4,-TH/2+3,LM-8,6);g.fillStyle='rgba(0,0,0,.18)';g.fillRect(-LM/2+4,TH/2-8,LM-8,5);
+g.strokeStyle='rgba(15,23,42,.85)';g.lineWidth=1.6;g.strokeRect(-LM/2,-TH/2,LM,TH);g.beginPath();g.moveTo(0,-TH/2);g.lineTo(0,TH/2);g.stroke();g.restore();
+g.fillStyle='#fff';g.font='bold 22px Arial';g.textAlign='center';g.textBaseline='middle';g.shadowColor='rgba(0,0,0,.6)';g.shadowBlur=3;g.fillText('S',m.x-Math.cos(m.a)*LM/4,m.y+Math.sin(m.a)*LM/4);g.fillText('N',m.x+Math.cos(m.a)*LM/4,m.y-Math.sin(m.a)*LM/4);g.shadowColor='transparent';g.textBaseline='alphabetic'}
+function dJar(g,j,lvl){g.save();g.translate(j.x,j.y);g.rotate(j.tilt);g.shadowColor='rgba(0,0,0,.35)';g.shadowBlur=8;g.shadowOffsetY=4;
+g.fillStyle='rgba(226,232,240,.75)';g.fillRect(-27,-36,54,76);g.shadowColor='transparent';
+const h=Math.max(0,Math.min(1,lvl))*60;g.fillStyle='#374151';g.fillRect(-25,38-h,50,h);g.fillStyle='#9ca3af';for(let i=0;i<14;i++){g.fillRect(-24+((i*37)%46),38-h+((i*53)%Math.max(1,h)),2,2)}
+g.strokeStyle='#64748b';g.lineWidth=2;g.strokeRect(-27,-36,54,76);g.fillStyle='rgba(255,255,255,.5)';g.fillRect(-22,-30,6,60);
+g.fillStyle='#cbd5e1';g.fillRect(-29,-50,58,16);g.strokeStyle='#64748b';g.strokeRect(-29,-50,58,16);g.fillStyle='#475569';for(let i=-3;i<=3;i++){g.beginPath();g.arc(i*8,-42,1.6,0,7);g.fill()}
+g.fillStyle='#fff';g.fillRect(-18,-8,36,22);g.strokeStyle='#94a3b8';g.lineWidth=1;g.strokeRect(-18,-8,36,22);g.fillStyle='#1f2937';g.font='bold 13px Arial';g.textAlign='center';g.fillText('Fe',0,8);g.restore()}
+function arw(g,x,y,dx,dy,s=9){const n=Math.hypot(dx,dy)||1;dx/=n;dy/=n;g.beginPath();g.moveTo(x+dx*s,y+dy*s);g.lineTo(x-dx*s*.6-dy*s*.55,y-dy*s*.6+dx*s*.55);g.lineTo(x-dx*s*.6+dy*s*.55,y-dy*s*.6-dx*s*.55);g.closePath();g.fill()}
+function hint(g,t){g.fillStyle='rgba(100,116,139,.55)';g.font='bold 20px Arial';g.textAlign='center';g.fillText(t,W/2,H/2+6)}
+const clampSheet=(x,y,mx=40,my=40)=>[Math.max(SHT.x+mx,Math.min(SHT.x+SHT.w-mx,x)),Math.max(SHT.y+my,Math.min(SHT.y+SHT.h-my,y))];
+function trayDrag(id,cv,drop){const tr=$(id);tr.addEventListener('pointerdown',e=>{const it=e.target.closest('[data-t]');if(!it)return;e.preventDefault();const t=it.dataset.t;let moved=false;const gh=it.cloneNode(true);gh.style.cssText='position:fixed;pointer-events:none;opacity:.85;z-index:999;background:#fff;left:'+(e.clientX-60)+'px;top:'+(e.clientY-30)+'px';document.body.appendChild(gh);
+const mv=ev=>{moved=true;gh.style.left=(ev.clientX-60)+'px';gh.style.top=(ev.clientY-30)+'px'};
+const up=ev=>{document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',up);document.removeEventListener('pointercancel',cn);gh.remove();const r=cv.getBoundingClientRect();if(moved&&ev.clientX>=r.left&&ev.clientX<=r.right&&ev.clientY>=r.top&&ev.clientY<=r.bottom)drop(t,(ev.clientX-r.left)*W/r.width,(ev.clientY-r.top)*H/r.height);else if(!moved)drop(t,null,null)};
+const cn=()=>{document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',up);document.removeEventListener('pointercancel',cn);gh.remove()};
+document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up);document.addEventListener('pointercancel',cn)})}
+const IC={
+mag:`<svg viewBox="0 0 120 56" width="108" height="50"><defs><linearGradient id="icb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93c5fd"/><stop offset=".3" stop-color="#2563eb"/><stop offset="1" stop-color="#1e3a8a"/></linearGradient><linearGradient id="icr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fca5a5"/><stop offset=".3" stop-color="#dc2626"/><stop offset="1" stop-color="#7f1d1d"/></linearGradient></defs><rect x="8" y="8" width="52" height="40" fill="url(#icb)"/><rect x="60" y="8" width="52" height="40" fill="url(#icr)"/><rect x="8" y="8" width="104" height="40" fill="none" stroke="#0f172a" stroke-width="2"/><text x="34" y="36" text-anchor="middle" fill="#fff" font-weight="bold" font-size="20" font-family="Arial">S</text><text x="86" y="36" text-anchor="middle" fill="#fff" font-weight="bold" font-size="20" font-family="Arial">N</text></svg>`,
+jar:`<svg viewBox="0 0 80 80" width="70" height="50"><rect x="22" y="14" width="36" height="58" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/><rect x="24" y="44" width="32" height="26" fill="#374151"/><rect x="19" y="4" width="42" height="12" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/><rect x="29" y="30" width="22" height="14" fill="#fff" stroke="#94a3b8"/><text x="40" y="41" text-anchor="middle" font-size="10" font-weight="bold" font-family="Arial">Fe</text></svg>`,
+pen:`<svg viewBox="0 0 130 30" width="110" height="26"><g transform="translate(6,15)"><polygon points="0,0 16,-6 16,6" fill="#e8c48a"/><polygon points="0,0 6,-2.3 6,2.3" fill="#374151"/><rect x="16" y="-6" width="78" height="12" fill="#facc15"/><rect x="16" y="-1" width="78" height="2" fill="#ca8a04"/><rect x="94" y="-6" width="8" height="12" fill="#cbd5e1"/><rect x="102" y="-6" width="9" height="12" fill="#f9a8d4"/></g></svg>`,
+er:`<svg viewBox="0 0 90 40" width="80" height="36"><rect x="8" y="8" width="74" height="26" rx="4" fill="#f9a8d4" stroke="#be185d"/><rect x="8" y="8" width="26" height="26" rx="4" fill="#60a5fa" stroke="#1d4ed8"/></svg>`};
+
+/* ---------- Қадам 3: Тәжірибе 1 (темір ұнтағы) ---------- */
+const c1=$('e1c'),E1={m:null,jar:null,drag:null,lvl:3000,parts:[],tap:0,tapped:false,total:0,settled:true,dirty:true,sel:[null,null,null]};
+const Q1=[
+{t:['Темір ұнтақтары қай аймақта көбірек шоғырланды?','В каких областях опилок собралось больше?','Where did the iron filings gather most?'],o:[['Магнит полюстерінің (ұштарының) маңында','Возле полюсов (концов) магнита','Near the poles (ends) of the magnet'],['Магниттің ортасының бүйір жағында','Сбоку у середины магнита','Beside the middle of the magnet'],['Магниттен алыс жерлерде','Вдали от магнита','Far away from the magnet'],['Барлық жерде бірдей','Везде одинаково','Equally everywhere']]},
+{t:['Ұнтақтар қандай бағытта орналасты?','Как расположились опилки?','How did the filings arrange themselves?'],o:[['Магниттің бір полюсінен екінші полюсіне қарай иілген сызықтар бойымен','Вдоль изогнутых линий от одного полюса к другому','Along curved lines from one pole to the other'],['Магнитке перпендикуляр түзу сызықтар бойымен','Вдоль прямых линий, перпендикулярных магниту','Along straight lines perpendicular to the magnet'],['Магнитті айнала концентрлі шеңберлер бойымен','По концентрическим окружностям вокруг магнита','Along concentric circles around the magnet'],['Ретсіз, кездейсоқ','Беспорядочно, случайно','Randomly, without order']]},
+{t:['Магниттен алыстаған сайын ұнтақтар қалай орналасты?','Как расположились опилки по мере удаления от магнита?','How did the filings look farther from the magnet?'],o:[['Сирей түсті — өріс әлсіреді','Стали реже — поле слабее','Became sparser — the field is weaker'],['Тығыздала түсті','Стали гуще','Became denser'],['Өзгеріссіз қалды','Не изменились','Did not change'],['Барлығы бір түзу бойымен тұрды','Все выстроились в одну прямую','All lined up in one straight line']]}];
+E1.qo=Q1.map(()=>sh([0,1,2,3]));
+const e1lv=()=>{const o=$('e1lv');if(o)o.textContent=X('Ыдыста','В банке','In the jar')+': '+E1.lvl+' / 3000'};
+function e1g(){const E=E1,st=[[!!E.m,X('Магнитті үстелге апарып қойыңыз','Перетащите магнит на стол','Drag the magnet onto the table')],[E.total>=500,X('Ұнтақ салынған ыдысты үстелге апарып, оны басып тұрып магниттің айналасында жылжытыңыз (ұнтақ себіледі)','Перетащите банку с опилками на стол и водите ею вокруг магнита, удерживая (опилки сыплются)','Drag the jar onto the table and move it around the magnet while holding it (filings pour out)')],[E.tapped,X('«Үстелді түрту» батырмасын басып, ұнтақтардың қалай орналасатынын бақылаңыз','Нажмите «Постучать по столу» и наблюдайте, как располагаются опилки','Press “Tap the table” and watch how the filings arrange themselves')],[E.sel.every(v=>v!==null&&v!==''),X('Бақылау сұрақтарына жауап беріңіз, «Тексеру» батырмасын басыңыз','Ответьте на вопросы наблюдения и нажмите «Проверить»','Answer the observation questions and press “Check”')]];
+$('e1g').innerHTML=st.map((s,i)=>`<div class="gs ${s[0]?'d':''}">${s[0]?'✅':'⬜'} ${i+1}. ${s[1]}</div>`).join('')}
+function e1ui(){$('tray1').innerHTML=`<div class="tr" data-t="mag">${IC.mag}${X('Тұрақты магнит','Постоянный магнит','Permanent magnet')}</div><div class="tr" data-t="jar">${IC.jar}${X('Темір ұнтақтары (ыдыс)','Железные опилки (банка)','Iron filings (jar)')}</div>`;
+$('e1b').innerHTML=`<button class="action-btn secondary" data-a="e1rot">🔄 ${X('Магнитті бұру','Повернуть магнит','Rotate magnet')}</button><button class="action-btn" data-a="e1tap">👆 ${X('Үстелді түрту','Постучать по столу','Tap the table')}</button><button class="action-btn secondary" data-a="e1ref">🫙 ${X('Ыдысты толтыру','Наполнить банку','Refill jar')}</button><button class="action-btn secondary" data-a="e1clr">🧹 ${X('Ұнтақты тазалау','Убрать опилки','Clear filings')}</button><b id="e1lv" class="small"></b>`;e1lv();
+$('e1qh').textContent=X('Бақылау сұрақтары','Вопросы по наблюдению','Observation questions');
+$('e1q').innerHTML=Q1.map((q,i)=>`<div class="qrow"><label>${i+1}. ${XA(q.t)}</label><select data-ch="e1s" data-x="${i}"><option value="">?</option>${E1.qo[i].map(k=>`<option value="${k}" ${E1.sel[i]===String(k)?'selected':''}>${XA(q.o[k])}</option>`).join('')}</select><div class="fb" id="e1f${i}"></div></div>`).join('');
+$('e1ck').textContent='✔ '+X('Тексеру','Проверить','Check');e1g()}
+INP.e1s=t=>{E1.sel[+t.dataset.x]=t.value;e1g()};
+function e1drop(t,x,y){const E=E1;if(t=='mag'){const p=clampSheet(x==null?410:x,y==null?230:y,LM/2+10,TH/2+10);E.m=E.m||{x:0,y:0,a:0};E.m.x=p[0];E.m.y=p[1];E.parts=E.parts.filter(q=>!inMag(E.m,q.x,q.y));}
+else if(t=='jar'){const p=x==null?[690,120]:[Math.max(50,Math.min(W-50,x)),Math.max(60,Math.min(H-60,y))];E.jar={x:p[0],y:p[1],tilt:0}}E.settled=false;E.dirty=true;e1g()}
+ACT.e1rot=()=>{if(!E1.m)return;E1.m.a=(E1.m.a+PI/4)%(2*PI);E1.settled=false;E1.dirty=true};
+ACT.e1tap=()=>{if(!E1.parts.length)return;E1.tap=1;E1.tapped=true;E1.settled=false;e1g()};
+ACT.e1ref=()=>{E1.lvl=3000;e1lv();E1.dirty=true};
+ACT.e1clr=()=>{E1.parts=[];E1.total=0;E1.lvl=3000;E1.tapped=false;E1.tap=0;e1lv();e1g();E1.dirty=true};
+c1.addEventListener('pointerdown',e=>{const p=pt(e,c1),E=E1;c1.setPointerCapture(e.pointerId);if(E.jar&&Math.hypot(p[0]-E.jar.x,p[1]-E.jar.y)<48)E.drag={k:'jar',dx:p[0]-E.jar.x,dy:p[1]-E.jar.y};else if(E.m&&inMag(E.m,p[0],p[1],6))E.drag={k:'mag',dx:p[0]-E.m.x,dy:p[1]-E.m.y}});
+c1.addEventListener('pointermove',e=>{const E=E1;if(!E.drag)return;const p=pt(e,c1);if(E.drag.k=='jar'){E.jar.x=Math.max(30,Math.min(W-30,p[0]-E.drag.dx));E.jar.y=Math.max(40,Math.min(H-30,p[1]-E.drag.dy))}else{const q=clampSheet(p[0]-E.drag.dx,p[1]-E.drag.dy,LM/2+6,TH/2+6);E.m.x=q[0];E.m.y=q[1];E.parts=E.parts.filter(r=>!inMag(E.m,r.x,r.y));E.settled=false}E.dirty=true});
+const e1up=()=>{E1.drag=null;E1.dirty=true};c1.addEventListener('pointerup',e1up);c1.addEventListener('pointercancel',e1up);
+function e1spawn(){const E=E1,j=E.jar;if(!j||E.lvl<=0||E.parts.length>3600)return;const lx=j.x+48*Math.sin(j.tilt),ly=j.y-48*Math.cos(j.tilt);let n=0;for(let k=0;k<6&&E.lvl>0;k++){const x=lx+(Math.random()-.5)*34,y=ly+10+Math.random()*32;if(x<SHT.x+4||x>SHT.x+SHT.w-4||y<SHT.y+4||y>SHT.y+SHT.h-4)continue;if(E.m&&inMag(E.m,x,y))continue;E.parts.push({x,y,a:Math.random()*PI});E.lvl--;E.total++;n++}if(n){E.settled=false;e1lv();if(E.total>=500&&E.total-n<500)e1g()}}
+function e1step(){const E=E1;if(!E.m||!E.parts.length){E.tap*=.985;if(E.tap<.02)E.tap=0;return}const P=poles(E.m),tp=E.tap;let md=0;
+for(const p of E.parts){const b=Bf(P,p.x,p.y),n=Math.hypot(b[0],b[1]);if(n<1e-9)continue;let d=Math.atan2(b[1],b[0])-p.a;d-=Math.round(d/PI)*PI;const rate=Math.min(.4,60*n*(1+6*tp));p.a+=d*rate+(tp>.05?(Math.random()-.5)*.5*tp:0);md=Math.max(md,Math.abs(d)*rate);
+if(tp>.05){const h=3,gx=(Bm(P,p.x+h,p.y)-Bm(P,p.x-h,p.y))/(2*h),gy=(Bm(P,p.x,p.y+h)-Bm(P,p.x,p.y-h))/(2*h),gm=Math.hypot(gx,gy);if(gm>0){const sp=Math.min(1.6,1e5*gm)*tp,nx=p.x+gx/gm*sp,ny=p.y+gy/gm*sp;if(!inMag(E.m,nx,ny,4)&&nx>SHT.x+4&&nx<SHT.x+SHT.w-4&&ny>SHT.y+4&&ny<SHT.y+SHT.h-4){p.x=nx;p.y=ny}}}}
+E.tap*=.985;if(E.tap<.02)E.tap=0;E.settled=E.tap==0&&md<.0008}
+function e1draw(){const g=c1.getContext('2d'),E=E1;g.drawImage(BG,0,0);
+if(E.parts.length){g.strokeStyle='rgba(30,41,59,.88)';g.lineWidth=1.4;g.lineCap='round';g.beginPath();for(const p of E.parts){const ux=Math.cos(p.a)*3.2,uy=Math.sin(p.a)*3.2;g.moveTo(p.x-ux,p.y-uy);g.lineTo(p.x+ux,p.y+uy)}g.stroke();g.lineCap='butt'}
+if(E.m)dMag(g,E.m);if(E.jar)dJar(g,E.jar,E.lvl/3000);if(!E.m&&!E.jar)hint(g,'⬇ '+X('Құралдарды осы үстелге сүйреңіз','Перетащите инструменты на стол','Drag the tools onto the table'))}
+(function loop(){requestAnimationFrame(loop);const E=E1;if(E.drag&&E.drag.k=='jar')e1spawn();if(E.jar){const tg=E.drag&&E.drag.k=='jar'?2.4:0,d=tg-E.jar.tilt;if(Math.abs(d)>.005){E.jar.tilt+=d*.18;E.dirty=true}}
+if(!E.settled||E.tap>0){e1step();E.dirty=true}if(E.dirty){E.dirty=false;e1draw()}})();
+ACT.e1chk=()=>{const E=E1,o=$('e1fb'),miss=[];if(!E.m)miss.push(X('магнитті үстелге қойыңыз','поставьте магнит на стол','put the magnet on the table'));else if(E.total<500)miss.push(X('ұнтақты көбірек себіңіз','насыпьте больше опилок','sprinkle more filings'));if(E.m&&E.total>=500&&!E.tapped)miss.push(X('үстелді түртіп, ұнтақтардың орналасуын бақылаңыз','постучите по столу и понаблюдайте','tap the table and observe'));if(E.sel.some(v=>v===null||v===''))miss.push(X('барлық бақылау сұрағына жауап беріңіз','ответьте на все вопросы','answer all the questions'));
+if(miss.length){o.className='fb no';o.textContent='✗ '+X('Алдымен: ','Сначала: ','First: ')+miss.join('; ')+'.';return}
+let ok=0;Q1.forEach((q,i)=>{const g=E.sel[i]==='0',f=$('e1f'+i);ok+=g;f.className='fb '+(g?'ok':'no');f.textContent=g?'✓ '+X('Дұрыс','Верно','Correct','Жарайсың! 🎉'):'✗ '+X('Қайта бақылап көріңіз: ұнтақтарды түртіп, магнит маңына қараңыз.','Понаблюдайте ещё: постучите по столу и посмотрите возле магнита.','Observe again: tap the table and look around the magnet.','Қайта көр 💪')});
+o.className='fb '+(ok==3?'ok':'no');o.textContent=`${ok==3?'🎉':'✗'} ${ok}/3`;if(ok==3)award('fil')};
+
+/* ---------- Қадам 4: Тәжірибе 2 (қарындашпен салу) ---------- */
+const c2=$('e2c'),E2={m:null,tool:null,strokes:[],cur:null,drag:null,hov:null,model:false,penUsed:false,checked:false};
+function e2g(){const E=E2,st=[[!!E.m,X('Магнитті жұмыс алаңына апарыңыз','Перетащите магнит на рабочее поле','Drag the magnet onto the work area')],[E.penUsed,X('Қарындашты алаңға апарып, күш сызықтарын салуға дайындалыңыз','Перетащите карандаш на поле и приготовьтесь рисовать','Drag the pencil onto the area and get ready to draw')],[E.strokes.filter(s=>s.pts.length>6).length>=4,X('Магнит айналасында кемінде 4 күш сызығын салыңыз (бағытын көрсеткімен белгілеңіз)','Нарисуйте вокруг магнита не менее 4 силовых линий (направление — стрелкой)','Draw at least 4 field lines around the magnet (show direction with arrows)')],[E.checked,X('«Тексеру» батырмасын басып, қателерді қараңыз және түзетіңіз','Нажмите «Проверить», посмотрите ошибки и исправьте','Press “Check”, look at the mistakes and correct them')]];
+$('e2g').innerHTML=st.map((s,i)=>`<div class="gs ${s[0]?'d':''}">${s[0]?'✅':'⬜'} ${i+1}. ${s[1]}</div>`).join('')}
+function e2ui(){$('tray2').innerHTML=`<div class="tr" data-t="mag">${IC.mag}${X('Тұрақты магнит','Постоянный магнит','Permanent magnet')}</div><div class="tr" data-t="pen">${IC.pen}${X('Қарындаш','Карандаш','Pencil')}</div><div class="tr" data-t="er">${IC.er}${X('Өшіргіш','Ластик','Eraser')}</div>`;
+const tl=E2.tool;$('e2b').innerHTML=`<button class="action-btn ${tl=='move'?'on':'secondary'}" data-a="e2t" data-v="move">🖐 ${X('Магнитті жылжыту','Двигать магнит','Move magnet')}</button><button class="action-btn ${tl=='pen'?'on':'secondary'}" data-a="e2t" data-v="pen">✏️ ${X('Қарындаш','Карандаш','Pencil')}</button><button class="action-btn ${tl=='er'?'on':'secondary'}" data-a="e2t" data-v="er">🧽 ${X('Өшіргіш','Ластик','Eraser')}</button><button class="action-btn secondary" data-a="e2rot">🔄 ${X('Магнитті бұру','Повернуть магнит','Rotate magnet')}</button><button class="action-btn secondary" data-a="e2und">↶ ${X('Соңғы сызықты өшіру','Отменить линию','Undo last line')}</button><button class="action-btn secondary" data-a="e2clr">🗑 ${X('Сызбаны тазалау','Очистить рисунок','Clear drawing')}</button>${E2.checked?`<button class="action-btn secondary" data-a="e2mod">👁 ${E2.model?X('Үлгіні жасыру','Скрыть образец','Hide model'):X('Дұрыс үлгіні көрсету','Показать образец','Show model')}</button>`:''}`;
+$('e2ck').textContent='✔ '+X('Тексеру','Проверить','Check');e2g()}
+function e2drop(t,x,y){const E=E2;if(t=='mag'){const p=clampSheet(x==null?410:x,y==null?230:y,LM/2+10,TH/2+10);E.m=E.m||{x:0,y:0,a:0};E.m.x=p[0];E.m.y=p[1];if(!E.tool)E.tool='move'}else if(t=='pen'){E.tool='pen';E.penUsed=true}else if(t=='er')E.tool='er';e2ui();e2d()}
+ACT.e2t=v=>{if(v=='pen')E2.penUsed=true;E2.tool=v;e2ui();e2d()};
+const e2reset=()=>{E2.strokes.forEach(s=>s.mark=null)};
+ACT.e2rot=()=>{if(!E2.m)return;E2.m.a=(E2.m.a+PI/4)%(2*PI);e2reset();e2d()};
+ACT.e2und=()=>{E2.strokes.pop();e2reset();e2ui();e2d()};
+ACT.e2clr=()=>{E2.strokes=[];E2.checked=false;E2.model=false;$('e2fb').textContent='';e2ui();e2d()};
+ACT.e2mod=()=>{E2.model=!E2.model;e2ui();e2d()};
+const eraseAt=p=>{const n=E2.strokes.length;E2.strokes=E2.strokes.filter(s=>!s.pts.some(q=>Math.hypot(q[0]-p[0],q[1]-p[1])<12));if(E2.strokes.length!=n){e2reset();e2g()}};
+c2.addEventListener('pointerdown',e=>{const p=pt(e,c2),E=E2;c2.setPointerCapture(e.pointerId);E.hov=p;
+if(E.tool=='pen'){if(!E.m){const o=$('e2fb');o.className='fb no';o.textContent=X('Алдымен магнитті жұмыс алаңына апарыңыз.','Сначала перетащите магнит на поле.','First drag the magnet onto the area.');return}E.cur={pts:[p],mark:null};E.strokes.push(E.cur);e2reset()}
+else if(E.tool=='er')eraseAt(p);else if(E.m&&inMag(E.m,p[0],p[1],6))E.drag={dx:p[0]-E.m.x,dy:p[1]-E.m.y};e2d()});
+c2.addEventListener('pointermove',e=>{const p=pt(e,c2),E=E2;E.hov=p;
+if(E.cur){const l=E.cur.pts[E.cur.pts.length-1];if(Math.hypot(p[0]-l[0],p[1]-l[1])>3)E.cur.pts.push(p)}else if(E.tool=='er'&&e.buttons)eraseAt(p);else if(E.drag){const q=clampSheet(p[0]-E.drag.dx,p[1]-E.drag.dy,LM/2+6,TH/2+6);E.m.x=q[0];E.m.y=q[1];e2reset()}e2d()});
+const e2up=()=>{const E=E2;if(E.cur){if(E.cur.pts.length<5)E.strokes.pop();E.cur=null;e2g()}E.drag=null;e2d()};c2.addEventListener('pointerup',e2up);c2.addEventListener('pointercancel',e2up);c2.addEventListener('pointerleave',()=>{E2.hov=null;e2d()});
+function pencilCur(g,x,y,er){g.save();g.translate(x,y);g.rotate(PI/6);g.shadowColor='rgba(0,0,0,.3)';g.shadowBlur=5;g.shadowOffsetX=3;g.shadowOffsetY=4;
+if(er){g.fillStyle='#f9a8d4';g.fillRect(-9,-40,18,40);g.fillStyle='#60a5fa';g.fillRect(-9,-40,18,14);g.strokeStyle='#be185d';g.strokeRect(-9,-40,18,40)}
+else{g.fillStyle='#e8c48a';g.beginPath();g.moveTo(0,0);g.lineTo(-5,-17);g.lineTo(5,-17);g.fill();g.fillStyle='#374151';g.beginPath();g.moveTo(0,0);g.lineTo(-1.8,-6);g.lineTo(1.8,-6);g.fill();g.fillStyle='#facc15';g.fillRect(-5,-95,10,78);g.fillStyle='#ca8a04';g.fillRect(-.8,-95,1.6,78);g.fillStyle='#cbd5e1';g.fillRect(-5,-103,10,8);g.fillStyle='#f9a8d4';g.fillRect(-5,-112,10,9)}g.restore()}
+const MK={null:'#374151',ok:'#16a34a',shape:'#dc2626',dir:'#ea580c',short:'#94a3b8'};
+function drawStroke(g,s){const c=MK[s.mark],p=s.pts;if(p.length<2)return;g.lineCap='round';g.lineJoin='round';g.strokeStyle=c;g.fillStyle=c;g.globalAlpha=.9;g.lineWidth=2.4;g.beginPath();p.forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]));g.stroke();g.globalAlpha=.35;g.lineWidth=1;g.beginPath();p.forEach((q,i)=>i?g.lineTo(q[0]+.7,q[1]+.5):g.moveTo(q[0]+.7,q[1]+.5));g.stroke();g.globalAlpha=1;
+if(p.length>10){const i=Math.floor(p.length*.55),a=p[Math.max(0,i-3)],b=p[Math.min(p.length-1,i+3)];arw(g,p[i][0],p[i][1],b[0]-a[0],b[1]-a[1],9)}g.lineCap='butt'}
+function modelLines(m){const P=poles(m),out=[];[P[0]].forEach(p=>{for(let k=0;k<16;k++){const a=2*PI*k/16,pts=trace(P,p.x+10*Math.cos(a),p.y+10*Math.sin(a),1);if(pts.length>45)out.push(pts)}});return out}
+function e2d(){const g=c2.getContext('2d'),E=E2;g.drawImage(BG,0,0);if(E.m)dMag(g,E.m);
+if(E.model&&E.m){g.setLineDash([7,5]);modelLines(E.m).forEach(pts=>{g.strokeStyle='#0f766e';g.fillStyle='#0f766e';g.lineWidth=2;g.beginPath();pts.forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]));g.stroke();const i=Math.floor(pts.length/2);g.setLineDash([]);arw(g,pts[i][0],pts[i][1],pts[i+2][0]-pts[i-2][0],pts[i+2][1]-pts[i-2][1],8);g.setLineDash([7,5])});g.setLineDash([])}
+E.strokes.forEach(s=>drawStroke(g,s));
+if(!E.m)hint(g,'⬇ '+X('Магнитті және қарындашты осы алаңға сүйреңіз','Перетащите магнит и карандаш на поле','Drag the magnet and the pencil onto the area'));
+if(E.hov&&(E.tool=='pen'||E.tool=='er'))pencilCur(g,E.hov[0],E.hov[1],E.tool=='er');c2.style.cursor=(E.tool=='pen'||E.tool=='er')?'none':'grab'}
+function resample(pts,st=10){const o=[pts[0]];let l=pts[0];for(let i=1;i<pts.length;i++){const p=pts[i];let d=Math.hypot(p[0]-l[0],p[1]-l[1]);while(d>=st){const t=st/d,q=[l[0]+(p[0]-l[0])*t,l[1]+(p[1]-l[1])*t];o.push(q);l=q;d=Math.hypot(p[0]-l[0],p[1]-l[1])}}return o}
+const segX=(a,b,c,d)=>{const o=(p,q,r)=>(q[0]-p[0])*(r[1]-p[1])-(q[1]-p[1])*(r[0]-p[0]);return o(a,b,c)*o(a,b,d)<0&&o(c,d,a)*o(c,d,b)<0};
+ACT.e2chk=()=>{const E=E2,o=$('e2fb');if(!E.m){o.className='fb no';o.textContent=X('Алдымен магнитті алаңға қойып, күш сызықтарын салыңыз.','Сначала поставьте магнит и нарисуйте силовые линии.','First place the magnet and draw field lines.');return}
+const strokes=E.strokes.filter(s=>s.pts.length>2);if(!strokes.length){o.className='fb no';o.textContent=X('Күш сызықтарын қарындашпен салыңыз.','Нарисуйте силовые линии карандашом.','Draw the field lines with the pencil.');return}
+const P=poles(E.m),cs=Math.cos(E.m.a),sn=Math.sin(E.m.a);let ok=0,shape=0,dir=0,sideA=0,sideB=0,tooShort=0;const R=[];
+strokes.forEach(s=>{const r=resample(s.pts,10);R.push(r);if(r.length<7){s.mark='short';tooShort++;return}let tot=0,sh_=0,dp=0;for(let i=1;i<r.length-1;i++){const x=r[i][0],y=r[i][1];if(inMag(E.m,x,y,8)||P.some(p=>Math.hypot(x-p.x,y-p.y)<20))continue;const t=[r[i+1][0]-r[i-1][0],r[i+1][1]-r[i-1][1]],b=Bf(P,x,y),c=(t[0]*b[0]+t[1]*b[1])/((Math.hypot(t[0],t[1])*Math.hypot(b[0],b[1]))||1);tot++;if(Math.abs(c)>.82)sh_++;if(c>0)dp++}
+if(tot<3){s.mark='short';tooShort++;return}const sf=sh_/tot,df=dp/tot;if(sf>=.7&&df>=.7){s.mark='ok';ok++;const m=r[Math.floor(r.length/2)],v=(m[0]-E.m.x)*sn+(m[1]-E.m.y)*cs;v>0?sideA++:sideB++}else if(sf>=.7&&df<=.3){s.mark='dir';dir++}else{s.mark='shape';shape++}});
+let cross=0;const nearP=(x,y)=>P.some(p=>Math.hypot(x-p.x,y-p.y)<28);for(let i=0;i<R.length;i++)for(let j=i+1;j<R.length;j++){let hit=false;for(let a=0;a<R[i].length-1&&!hit;a++)for(let b=0;b<R[j].length-1&&!hit;b++)if(segX(R[i][a],R[i][a+1],R[j][b],R[j][b+1])&&!nearP(R[i][a][0],R[i][a][1]))hit=true;if(hit)cross++}
+const L=[];L.push(`${ok?'✓':'•'} ${X('Дұрыс сызылған күш сызықтары','Правильно нарисованные линии','Correctly drawn lines')}: ${ok}`);
+if(shape)L.push('✗ '+X(`${shape} сызықтың пішіні күш сызығына сәйкес емес (қызыл): сызық бір полюстен шығып, магнитті иіле айналып, екінші полюске келуі керек.`,`Форма ${shape} линий не соответствует силовой (красные): линия выходит из одного полюса, изгибается вокруг магнита и входит в другой.`,`${shape} line(s) have the wrong shape (red): a line leaves one pole, curves around the magnet and enters the other.`));
+if(dir)L.push('✗ '+X(`${dir} сызықтың бағыты кері (қызғылт-сары): магниттің сыртында күш сызықтары N-нен S-ке бағытталады.`,`${dir} линий направлены наоборот (оранжевые): снаружи магнита силовые линии идут от N к S.`,`${dir} line(s) point the wrong way (orange): outside the magnet field lines go from N to S.`));
+if(tooShort)L.push('• '+X(`${tooShort} сызық тым қысқа немесе магнит денесінде — есепке алынбады (сұр).`,`${tooShort} линий слишком короткие или внутри магнита — не учтены (серые).`,`${tooShort} line(s) are too short or inside the magnet — ignored (grey).`));
+if(cross)L.push('✗ '+X(`Күш сызықтары бір-бірін қиып өтпейді: ${cross} жерде қиылысу бар.`,`Силовые линии не пересекаются: найдено пересечений — ${cross}.`,`Field lines never cross: ${cross} crossing(s) found.`));
+if(ok<4)L.push('✗ '+X(`Кемінде 4 дұрыс күш сызығы керек (қазір ${ok}).`,`Нужно не менее 4 правильных линий (сейчас ${ok}).`,`At least 4 correct lines are needed (now ${ok}).`));
+if(ok>=1&&(!sideA||!sideB))L.push('✗ '+X('Магниттің екі жағынан да (үстіңгі және астыңғы) сызықтар салыңыз.','Нарисуйте линии с обеих сторон магнита.','Draw lines on both sides of the magnet.'));
+const good=ok>=4&&!shape&&!dir&&!cross&&sideA&&sideB;if(good){L.push('🎉 '+X('Керемет! Сызбаңыз магнит өрісінің дұрыс үлгісіне сәйкес.','Отлично! Ваш рисунок соответствует правильной модели поля.','Great! Your drawing matches the correct field pattern.','Жарайсың! 🎉'));award('draw')}
+else L.push('💪 '+X('Қателерді түзетіп (өшіргішті қолданыңыз), қайта тексеріңіз.','Исправьте ошибки (используйте ластик) и проверьте снова.','Fix the mistakes (use the eraser) and check again.'));
+L.push('👁 '+X('Дұрыс үлгі үзік сызықтармен (жасыл-көгілдір) көрсетілді.','Правильный образец показан пунктиром (бирюзовым).','The correct model is shown with dashed (teal) lines.'));
+E.checked=true;E.model=true;o.className='fb '+(good?'ok':'no');o.innerHTML=L.join('<br>');e2ui();e2d()};
+
+/* ---------- Қадам 5: тест ---------- */
+const Q=(t,ok,w)=>({t,ok,o:sh([ok,...w])});
+const bank=[
+()=>Q(X('Бір аттас полюстер (N–N) бір-біріне қалай әсер етеді?','Как действуют друг на друга одноимённые полюсы (N–N)?','How do like poles (N–N) act on each other?'),X('Тебіледі','Отталкиваются','Repel'),[X('Тартылады','Притягиваются','Attract'),X('Әсер етпейді','Не взаимодействуют','Do not interact'),X('Қызады','Нагреваются','Heat up')]),
+()=>Q(X('Әр аттас полюстер (N–S) бір-біріне қалай әсер етеді?','Как действуют друг на друга разноимённые полюсы (N–S)?','How do unlike poles (N–S) act on each other?'),X('Тартылады','Притягиваются','Attract'),[X('Тебіледі','Отталкиваются','Repel'),X('Әсер етпейді','Не взаимодействуют','Do not interact'),X('Жарқырайды','Светятся','Glow')]),
+()=>Q(X('Магниттің сыртында күш сызықтары қай бағытта бағытталған?','Как направлены силовые линии вне магнита?','Which way do field lines point outside a magnet?'),X('N-нен S-ке','От N к S','From N to S'),[X('S-тен N-ге','От S к N','From S to N'),X('Тек N полюсқа','Только к N','Only toward N'),X('Бағыты жоқ','Направления нет','No direction')]),
+()=>Q(X('Магнитті екіге бөлсек не болады?','Что будет, если разделить магнит пополам?','What happens if we cut a magnet in two?'),X('Әр бөлігінде N және S полюс болады','У каждой части будут полюсы N и S','Each piece has its own N and S poles'),[X('Бір бөлігі тек N, екіншісі тек S болады','Одна часть только N, другая только S','One piece only N, the other only S'),X('Магниттік қасиет жоғалады','Магнитные свойства пропадают','The magnetic property disappears'),X('Бір бөлігі ғана магнит болады','Магнитом останется только одна часть','Only one piece remains a magnet')]),
+()=>Q(X('Қай зат магнитке тартылады?','Какой предмет притягивается к магниту?','Which object is attracted to a magnet?'),X('Темір шеге','Железный гвоздь','Iron nail'),[X('Мыс тиын','Медная монета','Copper coin'),X('Ағаш қарындаш','Деревянный карандаш','Wooden pencil'),X('Шыны стақан','Стеклянный стакан','Glass cup')]),
+()=>Q(X('Күш сызықтары тығыз орналасқан жерде өріс қандай?','Каково поле там, где силовые линии гуще?','What is the field where field lines are denser?'),X('Күштірек','Сильнее','Stronger'),[X('Әлсіздеу','Слабее','Weaker'),X('Нөлге тең','Равно нулю','Zero'),X('Өзгермейді','Не меняется','Unchanged')]),
+()=>Q(X('Магнит өрісінің күш сызықтары бір-бірін қиып өте ме?','Пересекаются ли силовые линии магнитного поля?','Do magnetic field lines cross each other?'),X('Жоқ, ешқашан қиылыспайды','Нет, никогда не пересекаются','No, they never cross'),[X('Иә, әрқашан','Да, всегда','Yes, always'),X('Тек полюстерде','Только у полюсов','Only at the poles'),X('Тек ауада','Только в воздухе','Only in air')]),
+()=>Q(X('Магниттің жанындағы компас тілінің N ұшы қайда қарайды?','Куда смотрит конец N стрелки компаса возле магнита?','Where does the N end of a compass needle point near a magnet?'),X('Өріс бағытымен (магниттің S полюсіне қарай)','По полю (к полюсу S магнита)','Along the field (toward the magnet’s S pole)'),[X('Магниттің N полюсіне қарай','К полюсу N магнита','Toward the magnet’s N pole'),X('Әрқашан жоғары','Всегда вверх','Always upward'),X('Кез келген жаққа','Куда угодно','Anywhere')]),
+()=>Q(X('Темір ұнтақтары магниттің қай жерінде көбірек жиналады?','Где железные опилки собираются у магнита в большем количестве?','Where do iron filings gather most around a magnet?'),X('Полюстер маңында','Возле полюсов','Near the poles'),[X('Магниттің дәл ортасында','У самой середины магнита','At the very middle of the magnet'),X('Магниттен алыс жерде','Вдали от магнита','Far from the magnet'),X('Бірдей таралады','Распределяются равномерно','Spread evenly')]),
+()=>Q(X('Темір ұнтақтары өріс бойымен неге орналасады?','Почему опилки выстраиваются вдоль поля?','Why do iron filings line up along the field?'),X('Әр ұнтақ өрісте магниттеліп, шағын магнит тілшесі сияқты бұрылады','Каждая опилка намагничивается и, как маленькая стрелка, поворачивается по полю','Each filing becomes magnetised and turns like a tiny compass needle'),[X('Оларды жел айдайды','Их сдувает ветер','The wind blows them'),X('Олар бір-бірімен жабысады','Они склеиваются друг с другом','They stick to each other'),X('Қағаз оларды тартады','Бумага их притягивает','The paper pulls them')]),
+()=>Q(X('Темір ұнтағымен жұмыс істегенде не істеу керек?','Что нужно делать при работе с железными опилками?','What should you do when working with iron filings?'),X('Қолғап кию, көзге тигізбеу, жұмыстан кейін қол жуу','Надеть перчатки, беречь глаза, после работы помыть руки','Wear gloves, protect your eyes, wash hands afterwards'),[X('Ұнтақты үрлеп шашу','Дуть на опилки','Blow the filings around'),X('Көзді қолмен ысқылау','Тереть глаза рукой','Rub your eyes'),X('Ұнтақты үстелде қалдыру','Оставить опилки на столе','Leave filings on the desk')]),
+()=>Q(X('Күшті магнитті қайдан алыс ұстау керек?','От чего нужно держать сильный магнит подальше?','What should a strong magnet be kept away from?'),X('Телефоннан, банк картасынан, ноутбуктен','От телефона, банковской карты, ноутбука','Phones, bank cards, laptops'),[X('Қағаздан','От бумаги','Paper'),X('Ағаш үстелден','От деревянного стола','A wooden desk'),X('Су құйылған стақаннан','От стакана воды','A glass of water')]),
+()=>Q(X('Жердің магнит өрісі бар ма? Компас неге солтүстікті көрсетеді?','Есть ли у Земли магнитное поле? Почему компас показывает на север?','Does Earth have a magnetic field? Why does a compass point north?'),X('Жер үлкен магнит сияқты, компас оның өрісімен бұрылады','Земля как большой магнит, стрелка поворачивается по её полю','Earth acts like a big magnet; the needle follows its field'),[X('Жерде магнит өрісі жоқ','У Земли нет магнитного поля','Earth has no magnetic field'),X('Компас Күнге қарайды','Компас смотрит на Солнце','The compass points at the Sun'),X('Компас салмақтан бұрылады','Стрелка поворачивается из-за веса','The needle turns because of its weight')])];
+function tst(){S.T=sh(bank).slice(0,S.lang=='sen'?5:10).map(g=>g());$('tq').innerHTML=S.T.map((q,i)=>`<div class="check" style="margin-bottom:10px"><b>${i+1}. ${q.t}</b>${q.o.map(o=>`<label style="display:block;margin:4px 0"><input type="radio" name="q${i}" value="${esc(o)}"> ${esc(o)}</label>`).join('')}<button class="action-btn" data-a="q" data-v="${i}" style="margin-top:6px">${X('Тексеру','Проверить','Check')}</button><span class="fb" id="qf${i}"></span></div>`).join('');$('score').textContent=''}
+ACT.q=v=>{const i=+v,q=S.T[i],c=document.querySelector(`input[name=q${i}]:checked`),o=$('qf'+i);if(!c){o.className='fb no';o.textContent=' '+X('Жауапты таңдаңыз','Выберите ответ','Choose an answer');return}q.done=c.value==esc(q.ok);o.className='fb '+(q.done?'ok':'no');o.textContent=q.done?' ✓ '+X('Дұрыс','Верно','Correct','Жарайсың! 🎉'):' ✗ '+X('Қате. Дұрыс жауап: ','Неверно. Правильный ответ: ','Wrong. Correct answer: ','Қайта көр. Дұрыс жауап: ')+q.ok};
+$('shuf').onclick=tst;
+$('fin').onclick=()=>{const s=S.T.filter(q=>q.done).length;$('score').textContent=X(`Нәтиже: ${s} / ${S.T.length} (әр сұрақты «Тексеру» арқылы растаңыз)`,`Результат: ${s} / ${S.T.length} (подтверждайте каждый вопрос кнопкой «Проверить»)`,`Score: ${s} / ${S.T.length} (confirm each question with “Check”)`,`Нәтиже: ${s} / ${S.T.length} ${s>=S.T.length/2?'🎉 Жарайсың!':'💪 Тағы көріңіз!'}`);if(S.T.length&&s>=S.T.length*.7)award('test')};
+
+/* ---------- Тіл ---------- */
+const D={
+hero:{ru:'<div class="badge">ЛАБОРАТОРНАЯ РАБОТА №8</div><h1>Изучение свойств постоянного магнита и получение изображения магнитного поля</h1><p>Интерактивная модель: свойства магнитов, изображение силовых линий с помощью опилок и карандаша.</p><p class="obj"><b>8.4.3.1</b> – описывать основные свойства магнитов и изображать магнитное поле с помощью силовых линий<br><b>8.1.3.3</b> – знать и соблюдать правила безопасности в кабинете физики</p>',en:'<div class="badge">LAB WORK №8</div><h1>Studying the properties of a permanent magnet and visualising its magnetic field</h1><p>Interactive model: magnet properties, picturing field lines with iron filings and with a pencil.</p><p class="obj"><b>8.4.3.1</b> – describe the main properties of magnets and represent the magnetic field with field lines<br><b>8.1.3.3</b> – know and follow safety rules in the physics lab</p>',sen:'<div class="badge">№8 ЗЕРТХАНАЛЫҚ ЖҰМЫС</div><h1>🧲 Магниттің қасиеттерін зерттейміз</h1><p>Қадамдап жасаймыз. Асықпаңыз, қателесуге болады — қайта көріңіз! 😊</p><p class="obj"><b>8.4.3.1</b> – магниттің қасиеттерін айту, күш сызықтарын салу<br><b>8.1.3.3</b> – кабинетте қауіпсіздік ережесін сақтау</p>'},
+sq:{ru:'<h2>1. Исследовательский вопрос</h2><p><b>Как взаимодействуют разные полюса (северный и южный) постоянного магнита и как располагаются силовые линии магнитного поля снаружи магнита?</b></p>',en:'<h2>1. Research question</h2><p><b>How do the different poles (north and south) of a permanent magnet interact, and how are the field lines of the magnetic field arranged outside the magnet?</b></p>'},
+sa:{ru:'<h2>2. Цель и задачи исследования</h2><p><b>Цель:</b> изучить основные свойства постоянных магнитов и описать силовые линии магнитного поля.</p><p><b>Задачи:</b></p><ol><li>Рассмотреть физическую теорию и свойства постоянных магнитов.</li><li>Получить изображение магнитного поля с помощью железных опилок и самостоятельно нарисовать силовые линии.</li><li>Проанализировать наблюдения и сделать вывод.</li></ol>',en:'<h2>2. Aim and tasks</h2><p><b>Aim:</b> to study the main properties of permanent magnets and describe the field lines of the magnetic field.</p><p><b>Tasks:</b></p><ol><li>Review the physics and properties of permanent magnets.</li><li>Obtain the picture of the magnetic field with iron filings and draw the field lines yourself.</li><li>Analyse the observations and write a conclusion.</li></ol>',sen:'<h2>2. Мақсат</h2><p>Магниттің қасиеттерін және күш сызықтарын үйренеміз.</p><ol><li>Магнит неге тартылатынын білеміз.</li><li>Темір ұнтағымен өрісті көреміз.</li><li>Күш сызықтарын қарындашпен саламыз.</li></ol>'},
+sh:{ru:'<h2>3. Гипотеза</h2><div class="callout hyp"><p><b>Если</b> увеличить расстояние до постоянного магнита или уменьшить его силу, <b>то</b> индукция магнитного поля уменьшится, <b>потому что</b> по мере удаления от магнита силовые линии расходятся.</p></div>',en:'<h2>3. Hypothesis</h2><div class="callout hyp"><p><b>If</b> we increase the distance from a permanent magnet or reduce its strength, <b>then</b> the magnetic induction decreases, <b>because</b> field lines spread out away from the magnet.</p></div>'},
+sv:{ru:'<h2>4. Независимые, зависимые и контролируемые величины</h2><div class="variables"><div class="var blue"><b>Независимые</b>Расстояние r до магнита и масса магнита.</div><div class="var green"><b>Зависимые</b>Индукция магнитного поля B.</div><div class="var orange"><b>Контролируемые</b>Свойства среды (воздух), температура.</div></div>',en:'<h2>4. Independent, dependent and controlled variables</h2><div class="variables"><div class="var blue"><b>Independent</b>Distance r to the magnet and the mass of the magnet.</div><div class="var green"><b>Dependent</b>Magnetic induction B.</div><div class="var orange"><b>Controlled</b>Medium (air), temperature.</div></div>'},
+st:{ru:'<h2>5. Оборудование</h2><ul><li>постоянный магнит;</li><li>банка с железными опилками;</li><li>поверхность стола (лист бумаги);</li><li>карандаш и ластик.</li></ul>',en:'<h2>5. Equipment</h2><ul><li>permanent magnet;</li><li>jar of iron filings;</li><li>table surface (sheet of paper);</li><li>pencil and eraser.</li></ul>'},
+sr:{ru:'<h2>Основные свойства магнита</h2><div class="callout"><ul style="margin:0"><li>У магнита два полюса: <b>N</b> (северный) и <b>S</b> (южный).</li><li>Одноимённые полюса <b>отталкиваются</b>, разноимённые <b>притягиваются</b>.</li><li>Если разделить магнит, у каждой части снова будут N и S.</li><li>Силовые линии вне магнита направлены <b>от N к S</b>, они замкнуты и не пересекаются.</li><li>Где линии гуще — поле <b>сильнее</b>. Конец N стрелки компаса показывает направление поля.</li></ul></div>',en:'<h2>Main properties of a magnet</h2><div class="callout"><ul style="margin:0"><li>A magnet has two poles: <b>N</b> (north) and <b>S</b> (south).</li><li>Like poles <b>repel</b>, unlike poles <b>attract</b>.</li><li>If you cut a magnet, each piece has its own N and S.</li><li>Outside the magnet field lines run <b>from N to S</b>; they are closed and never cross.</li><li>Where lines are denser the field is <b>stronger</b>. The N end of a compass shows the field direction.</li></ul></div>',sen:'<h2>Магнит туралы</h2><div class="callout"><ul style="margin:0"><li>🔴 N және 🔵 S — екі полюс.</li><li>Бірдей полюстер — <b>тебіледі</b>. Әртүрлі полюстер — <b>тартылады</b>.</li><li>Күш сызықтары: N → S.</li><li>Сызық тығыз жерде — өріс күшті.</li></ul></div>'},
+so:{ru:'<h2>6. Порядок измерений</h2><div class="grid" style="margin-top:0"><div><h3>Опыт 1. Получение изображения магнитного поля с помощью железных опилок</h3><ol><li>На экране — пустой лабораторный стол и инструменты: постоянный магнит, банка с железными опилками.</li><li>Сами перетащите инструменты на стол. Сначала положите на стол постоянный магнит.</li><li>Затем сами насыпьте железные опилки вокруг магнита.</li><li>Наблюдайте, как располагаются опилки, и изучите картину магнитного поля: где опилок собирается больше и в каком направлении они выстраиваются.</li></ol></div><div><h3>Опыт 2. Самостоятельное рисование силовых линий магнитного поля</h3><ol><li>На экране — постоянный магнит, пустое рабочее поле и карандаш (опилки не используются).</li><li>Поместите магнит на рабочее поле и карандашом сами нарисуйте силовые линии: их направление, форму и расположение у полюсов.</li><li>Когда рисунок готов, нажмите «Проверить»: система сравнит его с правильной моделью поля и покажет ошибки.</li><li>При необходимости исправьте рисунок и проверьте снова. Правильный образец показывается только после проверки.</li></ol></div></div>',en:'<h2>6. Procedure</h2><div class="grid" style="margin-top:0"><div><h3>Experiment 1. Picturing the magnetic field with iron filings</h3><ol><li>The screen shows an empty lab table and tools: a permanent magnet and a jar of iron filings.</li><li>Drag the tools onto the table yourself. First put the permanent magnet on the table.</li><li>Then sprinkle the iron filings around the magnet yourself.</li><li>Watch how the filings arrange themselves and study the field picture: where the filings gather most and in which direction they line up.</li></ol></div><div><h3>Experiment 2. Drawing the field lines yourself</h3><ol><li>The screen shows a permanent magnet, an empty work area and a pencil (no iron filings).</li><li>Place the magnet on the work area and draw the field lines with the pencil: their direction, shape and arrangement near the poles.</li><li>When the drawing is ready press “Check”: the system compares it with the correct field pattern and shows the mistakes.</li><li>Correct the drawing if necessary and check again. The correct model appears only after checking.</li></ol></div></div>',sen:'<h2>6. Қалай жұмыс істейміз</h2><div class="grid" style="margin-top:0"><div><h3>Тәжірибе 1. Темір ұнтағы</h3><ol><li>Магнитті үстелге қой.</li><li>Ыдысты алып, ұнтақты себ.</li><li>Ұнтақ қалай тұрғанын қара.</li></ol></div><div><h3>Тәжірибе 2. Қарындашпен сал</h3><ol><li>Магнитті алаңға қой.</li><li>Күш сызықтарын қарындашпен сал.</li><li>«Тексеру» бас.</li></ol></div></div>'},
+ss:{ru:'<h2>7. Правила безопасности</h2><div class="callout warning"><ul style="margin:0"><li>Не защемите пальцы, сводя сильные магниты.</li><li>Не кладите магниты рядом с электронными устройствами (чтобы не повредить данные).</li><li>Работая с железными опилками, надевайте перчатки, не рассыпайте и не трогайте глаза.</li><li>Не бросайте, не бейте и не нагревайте магниты.</li><li>После работы уберите опилки и вымойте руки; при опасности сообщите учителю.</li></ul></div>',en:'<h2>7. Safety rules</h2><div class="callout warning"><ul style="margin:0"><li>Do not pinch your fingers when bringing strong magnets together.</li><li>Keep magnets away from electronic devices (to avoid data loss).</li><li>Wear gloves with iron filings, do not scatter them and keep them out of your eyes.</li><li>Do not throw, hit or heat magnets.</li><li>Clean up and wash your hands afterwards; tell the teacher about any danger.</li></ul></div>',sen:'<h2>7. Қауіпсіздік</h2><div class="callout warning"><ul style="margin:0"><li>⚠️ Саусағыңды магниттің арасына қыспа.</li><li>📱 Магнитті телефоннан алыс ұста.</li><li>🧤 Темір ұнтағына қолғаппен жұмыс істе.</li><li>Қауіп болса — мұғалімге айт.</li></ul></div>'},
+s1h:{ru:'Шаг 1. Выбери безопасное (8.1.3.3)',en:'Step 1. Choose the safe actions (8.1.3.3)'},
+s1p:{ru:'Отметьте, безопасно или опасно каждое утверждение. Если всё верно — получите 🏆 балл!',en:'Mark each statement as safe or dangerous. All correct earns you a 🏆 point!',sen:'Әр сөйлемді оқып, ✅ немесе ⛔ таңда. 👀'},
+s2h:{ru:'Шаг 2. Свойства магнита (8.4.3.1)',en:'Step 2. Properties of a magnet (8.4.3.1)'},
+s2p:{ru:'Поднесите магнит к каждому предмету, затем выберите — притягивается или нет — и проверьте.',en:'Bring the magnet close to each object, then choose whether it is attracted or not and check.'},
+m3:{ru:'🔍 Какие предметы притягиваются к магниту?',en:'🔍 Which objects are attracted to a magnet?'},
+p3:{ru:'🧲 Полюсы: притягиваются или отталкиваются?',en:'🧲 Poles: attract or repel?'},
+p3p:{ru:'Посмотрите на обращённые друг к другу полюсы и предскажите поведение магнитов.',en:'Look at the facing poles and predict how the magnets behave.'},
+s3h:{ru:'Шаг 3. Опыт 1. Получение изображения магнитного поля с помощью железных опилок',en:'Step 3. Experiment 1. Picturing the magnetic field with iron filings',sen:'Қадам 3. Тәжірибе 1. Темір ұнтағымен өрісті көреміз 🧲'},
+s3p:{ru:'Перетащите инструменты с полки на стол (на телефоне — нажмите). Сначала поставьте магнит, затем возьмите банку с опилками и сыпьте их, водя банкой вокруг магнита.',en:'Drag the tools from the shelf onto the table (on a phone — tap). First place the magnet, then take the jar of filings and pour them by moving the jar around the magnet.',sen:'Құралдарды үстелге сүйре. Алдымен магнит, сосын ыдыс. Ыдысты басып тұрып жылжыт — ұнтақ себіледі.'},
+s4h:{ru:'Шаг 4. Опыт 2. Самостоятельное рисование силовых линий магнитного поля',en:'Step 4. Experiment 2. Drawing the magnetic field lines yourself',sen:'Қадам 4. Тәжірибе 2. Күш сызықтарын қарындашпен саламыз ✏️'},
+s4p:{ru:'Перетащите магнит и карандаш на рабочее поле. Рисуйте силовую линию, удерживая карандаш: стрелка покажет направление, в котором вы рисовали. Когда готово — нажмите «Проверить».',en:'Drag the magnet and the pencil onto the work area. Draw a field line while holding the pencil: the arrow shows the direction you drew. When ready, press “Check”.',sen:'Магнит пен қарындашты алаңға сүйре. Сызықты N-нен S-ке қарай сыз. Сосын «Тексеру» бас.'},
+th:{ru:'Шаг 5. Тест',en:'Step 5. Test'},
+ch:{ru:'Заключение лабораторной работы',en:'Lab work conclusion'},
+cp:{ru:'Сравните свои наблюдения с теорией и опишите свойства магнита и картину силовых линий.',en:'Compare your observations with the theory and describe the properties of a magnet and the pattern of field lines.',sen:'Не байқадың? Магнит қалай тартады? Күш сызықтары қайда бағытталған? ✍️'},
+cl:{ru:'Заключение ученика:',en:"Student's conclusion:"},
+aib:{ru:'🤖 Проверить с помощью ИИ',en:'🤖 Check with AI'},dlb:{ru:'📥 Скачать отчёт',en:'📥 Download report'},
+apis:{ru:'⚙ Подключить настоящий ИИ (Claude) — для учителя, необязательно',en:'⚙ Connect real AI (Claude) — for teachers, optional'},
+apin:{ru:'Без ключа работает структурная автопроверка. Если ввести API-ключ, заключение проверит Claude (ключ остаётся только в браузере на этой странице).',en:'Without a key, a structural auto-check runs. If you enter an API key, Claude checks the conclusion (the key stays only in your browser on this page).'},
+dl:{ru:'Я не согласен с ответом ИИ, потому что:',en:'I disagree with the AI answer because:'},
+cph:{ru:'Напишите своё заключение здесь...',en:'Write your conclusion here...'},dph:{ru:'С чем именно вы не согласны? Приведите аргументы...',en:'What exactly do you disagree with? Give your arguments...'},
+foot:{ru:'Лабораторная работа №8 • Интерактивная исследовательская модель',en:'Lab work №8 • Interactive research model'}};
+const orig=new Map(),oph=new Map();document.querySelectorAll('[data-i]').forEach(e=>orig.set(e,e.innerHTML));document.querySelectorAll('[data-ph]').forEach(e=>oph.set(e,e.placeholder));
+const TB={kk:['🖨 Басып шығару','📄 PDF-ке айналдыру','PDF сақтау үшін ашылған терезеде принтер ретінде «PDF ретінде сақтау» (Save as PDF) таңдаңыз.'],ru:['🖨 Печать','📄 Сохранить в PDF','В окне печати выберите принтер «Сохранить как PDF» (Save as PDF).'],en:['🖨 Print','📄 Save as PDF','In the print dialog choose “Save as PDF” as the printer.'],sen:['🖨 Басып шығару','📄 PDF-ке айналдыру','Ашылған терезеде «PDF ретінде сақтау» таңдаңыз.']};
+function setLang(l){S.lang=l;document.body.className=l=='sen'?'sen':'';document.documentElement.lang=l=='ru'?'ru':l=='en'?'en':'kk';
+document.querySelectorAll('[data-i]').forEach(e=>{const d=D[e.dataset.i];e.innerHTML=l=='kk'||!d?orig.get(e):(d[l]||orig.get(e))});
+document.querySelectorAll('[data-ph]').forEach(e=>{const d=D[e.dataset.ph];e.placeholder=l=='kk'||!d||!d[l]?oph.get(e):d[l]});
+document.title=X('№8 Зертханалық жұмыс — Тұрақты магниттің қасиеттері және магнит өрісінің бейнесі','Лабораторная работа №8 — Свойства постоянного магнита и изображение магнитного поля','Lab work №8 — Properties of a permanent magnet and its magnetic field');
+document.querySelectorAll('#lang button').forEach(b=>b.classList.toggle('on',b.dataset.l==l));
+$('printBtn').textContent=TB[l][0];$('pdfBtn').textContent=TB[l][1];
+$('shuf').textContent='🔀 '+X('Араластыру (сұрақтар мен жауаптар)','Перемешать (вопросы и ответы)','Shuffle (questions and answers)');$('fin').textContent=X('Нәтижені көрсету','Показать результат','Show score');
+safeR();matR();polR();e1ui();e2ui();e1draw();e2d();tst();updSc();$('aiOut').style.display='none';$('disw').style.display='none'}
+$('lang').onclick=e=>{const b=e.target.closest('[data-l]');if(b)setLang(b.dataset.l)};
+
+/* ---------- ЖИ тексеру ---------- */
+function localCheck(t){const ss=t.split(/[.!?\n]+/),sn=(...r)=>ss.some(s=>r.every(x=>x.test(s))),att=/тарт|притяг|attract/i,rep=/тебіл|отталк|repel/i;
+const C=[[att.test(t)&&rep.test(t),X('Полюстер: бір аттас тебіледі, әр аттас тартылады','Полюса: одноимённые отталкиваются, разноимённые притягиваются','Poles: like repel, unlike attract')],
+[sn(/сызық|линии|lines/i,/N.*S|солтүст.*оңтүст|север.*юг|north.*south/i),X('Күш сызықтары N-нен S-ке бағытталған','Силовые линии идут от N к S','Field lines go from N to S')],
+[/тығыз|густ|dense|closer|crowd/i.test(t),X('Сызықтар тығыз жерде өріс күшті','Где линии гуще — поле сильнее','Denser lines mean a stronger field')],
+[sn(/ұнтақ|опилк|filings/i,/полюс|pole/i),X('Ұнтақтар полюстер маңында көбірек жиналады','Опилки больше скапливаются у полюсов','Filings gather most near the poles')],
+[/қиылыспа|қиылыс|пересек|cross|intersect/i.test(t),X('Күш сызықтары қиылыспайды','Силовые линии не пересекаются','Field lines do not cross')],
+[/тұйық|замкнут|closed|иілг|қисық|изогн|curv|bend/i.test(t),X('Күш сызықтары иілген (тұйық) сызықтар','Силовые линии изогнуты (замкнуты)','Field lines are curved (closed) lines')],
+[/қауіпсіз|безопас|safety|қолғап|перчат|glove|телефон|phone|саусақ|пальц|finger/i.test(t),X('Қауіпсіздік ережелері','Правила безопасности','Safety rules')]];
+const n=C.filter(c=>c[0]).length;return`<b>${X('Автотексеру','Автопроверка','Auto-check')}: ${n}/${C.length}</b><br>`+C.map(c=>(c[0]?'✓ ':'✗ ')+c[1]+(c[0]?'':X(' — қосыңыз',' — добавьте',' — please add'))).join('<br>')+'<br>'+(n>=5?X('Өте жақсы!','Отлично!','Excellent!','Жарайсың! 🎉'):X('Жетіспейтін тармақтарды қосып, қайта тексеріңіз.','Добавьте недостающие пункты и проверьте снова.','Add the missing points and check again.','Жетпейтін жерін толықтырып, қайта тексер. 💪'))}
+$('aib').onclick=async()=>{const t=$('conc').value.trim(),o=$('aiOut');o.style.display='block';$('disw').style.display='block';
+if(t.length<20){o.innerHTML=X('Қорытындыны толығырақ жазыңыз (кемінде бірнеше сөйлем).','Напишите заключение подробнее (хотя бы несколько предложений).','Please write a longer conclusion (a few sentences).');return}
+let h='🤖 '+localCheck(t);const key=$('apik').value.trim();
+if(key){o.innerHTML='⏳ ...';try{const L={kk:'Kazakh',ru:'Russian',en:'English',sen:'very simple Kazakh with short friendly sentences (student with special educational needs)'}[S.lang];
+const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'content-type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-5-5',max_tokens:600,messages:[{role:'user',content:`You are a physics teacher checking a school student's conclusion for a lab on permanent magnets, iron filings patterns and magnetic field lines. Facts: magnets have N and S poles; like poles repel, unlike attract; cutting a magnet gives two magnets; outside the magnet field lines go from N to S, form closed loops and never cross; denser lines mean a stronger field; iron filings align along the field lines (each becomes a tiny magnet) and gather most near the poles; they get sparser farther from the magnet; compass N end points along the field; safety: keep fingers clear of strong magnets, keep magnets away from phones and cards, wear gloves with iron filings and keep them away from eyes. Student conclusion: """${t}""". Say what is correct, what is missing or wrong, and give one tip. Max 120 words. Answer in ${L}.`}]})});const j=await r.json();if(!j.content)throw 0;h='🤖 Claude:<br>'+esc(j.content.map(c=>c.text||'').join('')).replace(/\n/g,'<br>')}catch(e){h+='<br><i>(Claude қосылмады / API error — '+X('автотексеру көрсетілді','показана автопроверка','auto-check shown')+')</i>'}}
+o.innerHTML=h};
+$('dlb').onclick=()=>{const b=new Blob([`${document.title}\n\n${X('Ұпай','Баллы','Points')}: ${S.sc.size}/${TOT}\n\n${X('Қорытынды','Заключение','Conclusion')}:\n${$('conc').value}\n\nAI:\n${$('aiOut').innerText}\n\n${X('Келіспеймін','Не согласен(на)','Disagreement')}:\n${$('dis').value}\n`],{type:'text/plain'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='lab8_report.txt';a.click()};
+
+/* ---------- Басып шығару / PDF ---------- */
+$('printBtn').onclick=()=>setTimeout(()=>window.print(),50);
+$('pdfBtn').onclick=()=>{alert(TB[S.lang][2]);setTimeout(()=>window.print(),50)};
+
+/* ---------- Оқиғалар ---------- */
+document.addEventListener('click',e=>{const a=e.target.closest('[data-a]');if(a&&ACT[a.dataset.a])ACT[a.dataset.a](a.dataset.v,a)});
+document.addEventListener('change',e=>{const k=e.target.dataset&&e.target.dataset.ch;if(k&&INP[k])INP[k](e.target)});
+trayDrag('tray1',c1,e1drop);trayDrag('tray2',c2,e2drop);
+setLang('kk');
+})();
+</script>
+</body>
+</html>
